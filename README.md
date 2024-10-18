@@ -1,4 +1,8 @@
-# Verifier Validation Registry
+# Verifier Validation Registry - Proof of Concept
+
+This is a proof of concept implementation for a [Verifier Validation Registry](https://hackmd.io/@FlyingNobita/verifier-validator-registry-proposal-draft).
+
+This registry's main objective is to allow users to quickly check the validity of zero-knowledge proof (ZKP) verifiers.
 
 ## Install
 
@@ -29,19 +33,19 @@ yarn foundry:test:watch
 
 ## Run
 
-2. Run a local network in the first terminal:
+1. Run a local network in the first terminal:
 
 ```
 yarn chain
 ```
 
-3. On a second terminal, deploy the test contract:
+2. On a second terminal, deploy the test contract:
 
 ```
 yarn deploy
 ```
 
-4. On a third terminal, start your NextJS app:
+3. On a third terminal, start your NextJS app:
 
 ```
 yarn start
