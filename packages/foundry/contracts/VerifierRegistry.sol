@@ -15,7 +15,7 @@ contract VerifierRegistry {
     address owner; // project owner
     bool isProject;
     mapping(address => Verifier) verifiers;
-    address[] verifiersAddresses;
+    address[] verifierAddresses;
   }
 
   // mapping to store project indexed by projectId
@@ -31,17 +31,16 @@ contract VerifierRegistry {
     address verifierAddress; // TODO: redundant for debug, to be remove
     bool isVerifier;
     mapping(address => Validator) validators;
-    address[] validatorsAddresses;
-    uint256 validateCorrectlyCount;
-    uint256 validateIncorrectlyCount;
+    address[] validatorAddresses;
+    uint256 validateCorrectlyCount; // sum of all validations that were correct
+    uint256 validateIncorrectlyCount; // sum of all validations that were incorrect
   }
 
   // Represent a Validator
   struct Validator {
     address validatorAddress; // TODO: redundant for debug, to be remove
     bool isValidator;
-    mapping(address => Validation) validations; // store validations by verifiers addresses
-    address[] verifiersAddresses; // store all verifiers addresses the validator has validated for
+    Validation[] validations; // validators can validate each verifier multiple times
   }
 
   // Represent a Validation
@@ -54,7 +53,7 @@ contract VerifierRegistry {
   // mapping to store validator indexed by validator address
   mapping(address => Validator) public validatorStructs;
   // array to store all validator addresses
-  address[] public validatorsAddresses;
+  address[] public validatorAddresses;
 
   // function to check if project exists
   function projectExists(
@@ -200,15 +199,15 @@ contract VerifierRegistry {
     // initialize verifier
     verifier_.verifierAddress = verifierAddress;
     verifier_.isVerifier = true;
-    verifier_.validatorsAddresses = new address[](0);
+    verifier_.validatorAddresses = new address[](0);
     verifier_.validateCorrectlyCount = 0;
     verifier_.validateIncorrectlyCount = 0;
 
     // add verifier to project
-    project_.verifiersAddresses.push(verifierAddress);
+    project_.verifierAddresses.push(verifierAddress);
 
     // return number of verifiers for projects
-    return project_.verifiersAddresses.length;
+    return project_.verifierAddresses.length;
   }
 
   // function to check if verifier exists for project
@@ -249,7 +248,7 @@ contract VerifierRegistry {
   function getVerifiers(
     bytes32 projectId
   ) public view returns (address[] memory) {
-    return projectStructs[projectId].verifiersAddresses;
+    return projectStructs[projectId].verifierAddresses;
   }
 
   // function to get verifier for project
@@ -271,7 +270,7 @@ contract VerifierRegistry {
   function getVerifierCountForProject(
     bytes32 projectId
   ) public view returns (uint256) {
-    return projectStructs[projectId].verifiersAddresses.length;
+    return projectStructs[projectId].verifierAddresses.length;
   }
 
   // function to disable verifier from project
@@ -334,10 +333,10 @@ contract VerifierRegistry {
     // add validator to verifier
     verifierValidator.validatorAddress = msg.sender;
     verifierValidator.isValidator = true;
-    verifierValidator.validations[verifierAddress] =
-      Validation(validatedCorrectly, block.timestamp);
-    verifierValidator.verifiersAddresses.push(verifierAddress);
-    verifier_.validatorsAddresses.push(msg.sender);
+    verifierValidator.validations.push(
+      Validation(validatedCorrectly, block.timestamp)
+    );
+    verifier_.validatorAddresses.push(msg.sender);
 
     // update validator count for verifier
     // TODO: to review if this is needed
@@ -353,15 +352,15 @@ contract VerifierRegistry {
     // if (!validator_.isValidator) {
     //   validator_.validatorAddress = msg.sender;
     //   validator_.isValidator = true;
-    //   validatorsAddresses.push(msg.sender);
+    //   validatorAddresses.push(msg.sender);
     // }
     // add validation to validator
     // validator_.validations[verifierAddress] =
     //   Validation(validatedCorrectly, block.timestamp);
-    // validator_.verifiersAddresses.push(verifierAddress);
+    // validator_.verifierAddresses.push(verifierAddress);
 
     // return number of validators for verifier
-    return verifier_.validatorsAddresses.length;
+    return verifier_.validatorAddresses.length;
   }
 
   // function to get validators and their validations for verifier
@@ -383,23 +382,38 @@ contract VerifierRegistry {
       projectStructs[projectId].verifiers[verifierAddress];
 
     // declare temporary variables to be returned
-    address[] memory validatorsAddresses_ =
-      new address[](verifier_.validatorsAddresses.length);
+    address[] memory validatorAddresses_ =
+      new address[](verifier_.validatorAddresses.length);
     bool[] memory validatedCorrectly_ =
-      new bool[](verifier_.validatorsAddresses.length);
+      new bool[](verifier_.validatorAddresses.length);
 
     // loop through verifier's validators and get their validations
-    for (uint256 i = 0; i < verifier_.validatorsAddresses.length; i++) {
+    for (uint256 i = 0; i < verifier_.validatorAddresses.length; i++) {
       if (
         verifier_.isVerifier
-          && verifier_.validators[verifier_.validatorsAddresses[i]].isValidator
+          && verifier_.validators[verifier_.validatorAddresses[i]].isValidator
       ) {
-        validatorsAddresses_[i] = verifier_.validatorsAddresses[i];
-        validatedCorrectly_[i] = verifier_.validators[verifier_
-          .validatorsAddresses[i]].validations[verifierAddress].validatedCorrect;
+        for (
+          uint256 j = 0;
+          j
+            < verifier_.validators[verifier_.validatorAddresses[i]]
+              .validations
+              .length;
+          j++
+        ) {
+          validatorAddresses_[i] = verifier_.validatorAddresses[i];
+          if (
+            verifier_.validators[verifier_.validatorAddresses[i]].validations[j]
+              .validatedCorrect
+          ) {
+            validatedCorrectly_[i] = true;
+          } else {
+            validatedCorrectly_[i] = false;
+          }
+        }
       }
     }
 
-    return (validatorsAddresses_, validatedCorrectly_);
+    return (validatorAddresses_, validatedCorrectly_);
   }
 }

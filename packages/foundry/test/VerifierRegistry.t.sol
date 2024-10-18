@@ -89,11 +89,9 @@ contract VerifierRegistryTest is Test {
 
     // add validator for verifier
     vm.prank(project1Verifier1Validator1);
-    console.log(address(project1Verifier1Validator1).balance);
     verifierRegistry.addValidatorForVerifier(projectId, project1Verifier1, true);
 
     vm.prank(project1Verifier1Validator2);
-    console.log(address(project1Verifier1Validator2).balance);
     verifierRegistry.addValidatorForVerifier(
       projectId, project1Verifier1, false
     );
