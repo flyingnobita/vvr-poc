@@ -1691,64 +1691,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@se-2/foundry@workspace:packages/foundry":
-  version: 0.0.0-use.local
-  resolution: "@se-2/foundry@workspace:packages/foundry"
-  dependencies:
-    dotenv: ~16.3.1
-    envfile: ~6.18.0
-    ethers: ~5.7.1
-    prettier: ~2.8.8
-    qrcode: ~1.5.3
-    shx: ~0.3.4
-    toml: ~3.0.0
-  languageName: unknown
-  linkType: soft
-
-"@se-2/nextjs@workspace:packages/nextjs":
-  version: 0.0.0-use.local
-  resolution: "@se-2/nextjs@workspace:packages/nextjs"
-  dependencies:
-    "@heroicons/react": ~2.1.5
-    "@rainbow-me/rainbowkit": 2.1.6
-    "@tanstack/react-query": ~5.28.6
-    "@trivago/prettier-plugin-sort-imports": ~4.1.1
-    "@types/node": ~18.19.50
-    "@types/react": ~18.3.5
-    "@typescript-eslint/eslint-plugin": ~5.40.0
-    "@uniswap/sdk-core": ~4.0.1
-    "@uniswap/v2-sdk": ~3.0.1
-    abitype: 1.0.6
-    autoprefixer: ~10.4.20
-    blo: ~1.0.1
-    burner-connector: ~0.0.8
-    daisyui: 4.12.10
-    eslint: ~8.24.0
-    eslint-config-next: ~14.0.4
-    eslint-config-prettier: ~8.5.0
-    eslint-plugin-prettier: ~4.2.1
-    next: ~14.2.11
-    next-nprogress-bar: ~2.3.13
-    next-themes: ~0.3.0
-    postcss: ~8.4.45
-    prettier: ~2.8.4
-    qrcode.react: ~3.1.0
-    react: ~18.3.1
-    react-copy-to-clipboard: ~5.1.0
-    react-dom: ~18.3.1
-    react-hot-toast: ~2.4.0
-    tailwindcss: ~3.4.11
-    type-fest: ~4.6.0
-    typescript: 5.5.3
-    use-debounce: ~8.0.4
-    usehooks-ts: 2.13.0
-    vercel: ~37.4.2
-    viem: 2.21.7
-    wagmi: 2.12.11
-    zustand: ~4.1.2
-  languageName: unknown
-  linkType: soft
-
 "@sinclair/typebox@npm:0.25.24":
   version: 0.25.24
   resolution: "@sinclair/typebox@npm:0.25.24"
@@ -2648,6 +2590,64 @@ __metadata:
   checksum: aa69e98b31e5b0db416e4906a70ff7b9fe168146a1d9e67007a2e4514999f7ce0d02153b6314f0ea6fb3a7a0c2ccf841511d09873695e8623a4d95546461bfc9
   languageName: node
   linkType: hard
+
+"@vvr-poc/foundry@workspace:packages/foundry":
+  version: 0.0.0-use.local
+  resolution: "@vvr-poc/foundry@workspace:packages/foundry"
+  dependencies:
+    dotenv: ~16.3.1
+    envfile: ~6.18.0
+    ethers: ~5.7.1
+    prettier: ~2.8.8
+    qrcode: ~1.5.3
+    shx: ~0.3.4
+    toml: ~3.0.0
+  languageName: unknown
+  linkType: soft
+
+"@vvr-poc/nextjs@workspace:packages/nextjs":
+  version: 0.0.0-use.local
+  resolution: "@vvr-poc/nextjs@workspace:packages/nextjs"
+  dependencies:
+    "@heroicons/react": ~2.1.5
+    "@rainbow-me/rainbowkit": 2.1.6
+    "@tanstack/react-query": ~5.28.6
+    "@trivago/prettier-plugin-sort-imports": ~4.1.1
+    "@types/node": ~18.19.50
+    "@types/react": ~18.3.5
+    "@typescript-eslint/eslint-plugin": ~5.40.0
+    "@uniswap/sdk-core": ~4.0.1
+    "@uniswap/v2-sdk": ~3.0.1
+    abitype: 1.0.6
+    autoprefixer: ~10.4.20
+    blo: ~1.0.1
+    burner-connector: ~0.0.8
+    daisyui: 4.12.10
+    eslint: ~8.24.0
+    eslint-config-next: ~14.0.4
+    eslint-config-prettier: ~8.5.0
+    eslint-plugin-prettier: ~4.2.1
+    next: ~14.2.11
+    next-nprogress-bar: ~2.3.13
+    next-themes: ~0.3.0
+    postcss: ~8.4.45
+    prettier: ~2.8.4
+    qrcode.react: ~3.1.0
+    react: ~18.3.1
+    react-copy-to-clipboard: ~5.1.0
+    react-dom: ~18.3.1
+    react-hot-toast: ~2.4.0
+    tailwindcss: ~3.4.11
+    type-fest: ~4.6.0
+    typescript: 5.5.3
+    use-debounce: ~8.0.4
+    usehooks-ts: 2.13.0
+    vercel: ~37.4.2
+    viem: 2.21.7
+    wagmi: 2.12.11
+    zustand: ~4.1.2
+  languageName: unknown
+  linkType: soft
 
 "@wagmi/connectors@npm:5.1.10":
   version: 5.1.10
@@ -9448,15 +9448,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"se-2@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "se-2@workspace:."
-  dependencies:
-    husky: ~8.0.3
-    lint-staged: ~13.2.2
-  languageName: unknown
-  linkType: soft
-
 "secp256k1@npm:^5.0.0":
   version: 5.0.0
   resolution: "secp256k1@npm:5.0.0"
@@ -10994,6 +10985,15 @@ __metadata:
   checksum: 60112b796beaa1b3a2dd2f559e61fddc0afb99dc97de2a3545e0da871044ba29d1dddc877220c77332bca36d5233b2807992abfd92154c84926abbcdffd6db6d
   languageName: node
   linkType: hard
+
+"vvr-poc@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "vvr-poc@workspace:."
+  dependencies:
+    husky: ~8.0.3
+    lint-staged: ~13.2.2
+  languageName: unknown
+  linkType: soft
 
 "wagmi@npm:2.12.11":
   version: 2.12.11

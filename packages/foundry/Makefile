@@ -81,6 +81,10 @@ lint:
 test:
 	forge test
 
+# Run tests with watch
+test-watch:
+	forge test -vvvvv --watch
+
 # Verify contracts
 verify:
 	forge script script/VerifyAll.s.sol --ffi --rpc-url $(RPC_URL)
