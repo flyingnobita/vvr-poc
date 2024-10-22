@@ -195,6 +195,11 @@ const deployedContracts = {
               type: "bool[]",
               internalType: "bool[]",
             },
+            {
+              name: "",
+              type: "uint256[]",
+              internalType: "uint256[]",
+            },
           ],
           stateMutability: "view",
         },
