@@ -364,11 +364,10 @@ contract VerifierRegistry {
   }
 
   // function to get validators and their validations for verifier
-  // TODO: add validations for verifier
   function getValidatorsForVerifier(
     bytes32 projectId,
     address verifierAddress
-  ) public view returns (address[] memory, bool[] memory) {
+  ) public view returns (address[] memory, bool[] memory, uint256[] memory) {
     // check if project exists
     require(projectExists(projectId), "Project does not exist");
 
@@ -386,6 +385,8 @@ contract VerifierRegistry {
       new address[](verifier_.validatorAddresses.length);
     bool[] memory validatedCorrectly_ =
       new bool[](verifier_.validatorAddresses.length);
+    uint256[] memory validationTimestamps_ =
+      new uint256[](verifier_.validatorAddresses.length);
 
     // loop through verifier's validators and get their validations
     for (uint256 i = 0; i < verifier_.validatorAddresses.length; i++) {
@@ -410,10 +411,12 @@ contract VerifierRegistry {
           } else {
             validatedCorrectly_[i] = false;
           }
+          validationTimestamps_[i] = verifier_.validators[verifier_
+            .validatorAddresses[i]].validations[j].validationTimestamp;
         }
       }
     }
 
-    return (validatorAddresses_, validatedCorrectly_);
+    return (validatorAddresses_, validatedCorrectly_, validationTimestamps_);
   }
 }

@@ -96,14 +96,20 @@ contract VerifierRegistryTest is Test {
       projectId, project1Verifier1, false
     );
 
-    (address[] memory validators, bool[] memory validations) =
-      verifierRegistry.getValidatorsForVerifier(projectId, project1Verifier1);
+    (
+      address[] memory validators,
+      bool[] memory validations,
+      uint256[] memory validationTimestamps
+    ) = verifierRegistry.getValidatorsForVerifier(projectId, project1Verifier1);
 
     require(validators.length == 2);
     require(validations.length == 2);
+    require(validationTimestamps.length == 2);
     require(validators[0] == project1Verifier1Validator1);
     require(validations[0] == true);
+    require(validationTimestamps[0] > 0);
     require(validators[1] == project1Verifier1Validator2);
     require(validations[1] == false);
+    require(validationTimestamps[1] > 0);
   }
 }
