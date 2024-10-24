@@ -50,3 +50,16 @@ yarn deploy
 ```
 yarn start
 ```
+
+## To Dos
+
+- [ ] validator page
+- [ ] gas efficient storage for other information
+  - Project: Description, Team, URL
+  - Verifier: Name, Description, Source link, Status (active, inactive, etc)
+  - Validator: social details
+- [ ] verifier account owner before action
+- [ ] other gas optimization
+- [ ] clean out debug code
+- [ ] fresh coat of paint / UI
+- [ ] remaining TODOs
