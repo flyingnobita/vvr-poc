@@ -20,7 +20,7 @@
     "foundry:lint": "yarn workspace @vvr-poc/foundry lint",
     "foundry:test": "yarn workspace @vvr-poc/foundry test",
     "foundry:test:watch": "yarn workspace @vvr-poc/foundry test:watch",
-    "generate": "yarn workspace @vvr-poc/foundry generate",
+    "generate": "yarn workspace @vvr-poc/foundry account:generate",
     "postinstall": "husky install",
     "next:build": "yarn workspace @vvr-poc/nextjs build",
     "next:check-types": "yarn workspace @vvr-poc/nextjs check-types",

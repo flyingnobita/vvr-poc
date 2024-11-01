@@ -487,7 +487,7 @@ const deployedContracts = {
   },
   11155111: {
     VerifierRegistry: {
-      address: "0x13CE0000AD615aaB5de1E7F7d2D6F9a5A6fA6922",
+      address: "0xd95deE4d53DefeaE7F8070e446E5CEa934c24e9F",
       abi: [
         {
           type: "function",
