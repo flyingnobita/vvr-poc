@@ -8,13 +8,13 @@ const titleTemplate = "%s | Scaffold-ETH 2";
 export const getMetadata = ({
   title,
   description,
-  imageRelativePath = "/thumbnail.jpg",
-}: {
+}: // imageRelativePath = "/thumbnail.jpg",
+{
   title: string;
   description: string;
   imageRelativePath?: string;
 }): Metadata => {
-  const imageUrl = `${baseUrl}${imageRelativePath}`;
+  // const imageUrl = `${baseUrl}${imageRelativePath}`;
 
   return {
     metadataBase: new URL(baseUrl),
@@ -29,11 +29,11 @@ export const getMetadata = ({
         template: titleTemplate,
       },
       description: description,
-      images: [
-        {
-          url: imageUrl,
-        },
-      ],
+      // images: [
+      //   {
+      //     url: imageUrl,
+      //   },
+      // ],
     },
     twitter: {
       title: {
@@ -41,7 +41,7 @@ export const getMetadata = ({
         template: titleTemplate,
       },
       description: description,
-      images: [imageUrl],
+      // images: [imageUrl],
     },
     icons: {
       icon: [{ url: "/favicon.png", sizes: "32x32", type: "image/png" }],
